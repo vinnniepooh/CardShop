@@ -19,6 +19,13 @@ namespace CardShop.Controllers
             return View(objCategoryList);
         }
 
+        //GET
+        public IActionResult Create()
+        {
+
+            return View();
+        }
+
         public IActionResult Details()
         {
             
