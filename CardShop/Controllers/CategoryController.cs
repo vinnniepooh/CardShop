@@ -52,9 +52,8 @@ namespace CardShop.Controllers
             {
                 return NotFound();
             }
-            var CategoryFromDb = _db.Categories.Find(id);
 
-            //var CategoryFromDb = _db.Categories.FirstOrDefault(c => c.Id == id);
+            var CategoryFromDb = _db.Categories.FirstOrDefault(c => c.Id == id);
 
             if (CategoryFromDb == null)
             {
@@ -116,7 +115,6 @@ namespace CardShop.Controllers
             TempData["delete"] = "Category deleted successfully";
             return RedirectToAction("Index");
 
-            return View(id);
         }
 
         public IActionResult Details()
