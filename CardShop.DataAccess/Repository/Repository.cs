@@ -16,31 +16,36 @@ namespace CardShop.DataAccess.Repository
         {
 
             _db = db;
+            this.dbSet = _db.Set<T>();
         }
         internal DbSet<T> dbSet;
         void IRepository<T>.Add(T entity)
         {
-            throw new NotImplementedException();
+            dbSet.Add(entity);
+
         }
 
         void IRepository<T>.Delete(T entity)
         {
-            throw new NotImplementedException();
+            dbSet.Remove(entity);
         }
 
-        IEnumerable<T> IRepository<T>.GetAll()
+        public IEnumerable<T>GetAll()
         {
-            throw new NotImplementedException();
+            IQueryable<T> query = dbSet;
+            return query.ToList();
         }
 
-        T IRepository<T>.GetFirstOrDefault(Expression<Func<T, bool>> filter)
+        public T GetFirstOrDefault(Expression<Func<T, bool>> filter)
         {
-            throw new NotImplementedException();
+            IQueryable<T> query = dbSet;
+            query = query.Where(filter);
+            return query.FirstOrDefault();
         }
 
         void IRepository<T>.Update(T entity)
         {
-            throw new NotImplementedException();
+            dbSet.Update(entity);
         }
     }
 }
