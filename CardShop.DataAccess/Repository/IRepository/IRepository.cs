@@ -12,8 +12,8 @@ namespace CardShop.DataAccess.Repository.IRepository
         IEnumerable<T> GetAll();
         void Add(T entity);
         void Update(T entity);
-        void Delete(T entity);
+        void Remove(T entity);
         T GetFirstOrDefault(Expression<Func<T,bool>> filter);
-
+        void RemoveRange(IEnumerable<T> entity);
     }
 }

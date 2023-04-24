@@ -12,24 +12,23 @@ namespace CardShop.DataAccess.Repository
     internal class Repository<T> : IRepository<T> where T : class
     {
         private readonly ApplicationDbContext _db;
+        internal DbSet<T> dbSet;
+
         public Repository(ApplicationDbContext db)
         {
 
             _db = db;
             this.dbSet = _db.Set<T>();
         }
-        internal DbSet<T> dbSet;
-        void IRepository<T>.Add(T entity)
+         void IRepository<T>.Add(T entity)
         {
             dbSet.Add(entity);
 
         }
-
-        void IRepository<T>.Delete(T entity)
+        void IRepository<T>.Remove(T entity)
         {
             dbSet.Remove(entity);
         }
-
         public IEnumerable<T>GetAll()
         {
             IQueryable<T> query = dbSet;
@@ -46,6 +45,11 @@ namespace CardShop.DataAccess.Repository
         void IRepository<T>.Update(T entity)
         {
             dbSet.Update(entity);
+        }
+
+        public void RemoveRange(IEnumerable<T> entity)
+        {
+            dbSet.RemoveRange(entity);
         }
     }
 }
