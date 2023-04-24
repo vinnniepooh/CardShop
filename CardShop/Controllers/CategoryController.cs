@@ -7,6 +7,7 @@ namespace CardShop.Controllers
     public class CategoryController : Controller
     {
         private readonly ApplicationDbContext _db;
+        private readonly LoggerFactoryOptions _logger;
 
         public CategoryController(ApplicationDbContext db)
         {
